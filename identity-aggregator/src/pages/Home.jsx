@@ -17,9 +17,7 @@ import {
 import "../style/home.css";
 
 const Home = () => {
-    const [position, setPosition] = useState({})
-    const [offsetX, setOffsetY] = useState({})
-    const [offsetY, setOffsetX] = useState({})
+
 
   const responsesByProvider = {
     "Provider A": `{
@@ -77,76 +75,74 @@ Authorization: Bearer sk_live_••••••••
     },
   ];
 
-  
-const idTypes = [
-  { code: "BVN", label: "Bank Verification Number", country: "NG" },
-  { code: "NIN", label: "National Identity Number", country: "NG" },
-  { code: "CAC", label: "Corporate Affairs Registry", country: "NG" },
-  { code: "GHA-CARD", label: "Ghana Card", country: "GH" },
-  { code: "TIN", label: "Tax Identification Number", country: "NG" }
-];
+  const idTypes = [
+    { code: "BVN", label: "Bank Verification Number", country: "NG" },
+    { code: "NIN", label: "National Identity Number", country: "NG" },
+    { code: "CAC", label: "Corporate Affairs Registry", country: "NG" },
+    { code: "GHA-CARD", label: "Ghana Card", country: "GH" },
+    { code: "TIN", label: "Tax Identification Number", country: "NG" },
+  ];
 
+  const sayHello = () => {
+    console.log("hello Yemi");
+  };
 
-const sayHello =() =>{
-  console.log('hello Yemi')
-}
-
-function Draggable() {
-  const [position, setPosition] = useState({
-    x: 100,
-    y: 100,
-  });
-
-  const isDragging = useRef(false);
-  const divRef = useRef(null);
-
-  const offsetX = useRef(0);
-  const offsetY = useRef(0);
-
-  function handlePointerDown(e) {
-    const rect = divRef.current.getBoundingClientRect();
-
-    isDragging.current = true;
-
-    offsetX.current = e.clientX - rect.left;
-    offsetY.current = e.clientY - rect.top;
-  }
-
-  function handlePointerMove(e) {
-    if (!isDragging.current) return;
-
-    const newX = e.clientX - offsetX.current;
-    const newY = e.clientY - offsetY.current;
-
-    setPosition({
-      x: newX,
-      y: newY,
+  function Draggable() {
+    const [position, setPosition] = useState({
+      x: 100,
+      y: 100,
     });
-  }
 
-  function handlePointerUp() {
-    isDragging.current = false;
-  }
+    const isDragging = useRef(false);
+    const divRef = useRef(null);
 
-  return (
-    <div
-      ref={divRef}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      style={{
-        position: "absolute",
-        left: position.x,
-        top: position.y,
-        width: "fit-content",
-        height: 100,
-        display: "flex",
-        justifyContent:"space-evenly",
-        background: "red"
-      }}
-    >
-    <button>NG</button>
-{/* <svg width="300" height="200">
+    const offsetX = useRef(0);
+    const offsetY = useRef(0);
+
+    function handlePointerDown(e) {
+      const rect = divRef.current.getBoundingClientRect();
+
+      isDragging.current = true;
+
+      offsetX.current = e.clientX - rect.left;
+      offsetY.current = e.clientY - rect.top;
+    }
+
+    function handlePointerMove(e) {
+      if (!isDragging.current) return;
+
+      const newX = e.clientX - offsetX.current;
+      const newY = e.clientY - offsetY.current;
+
+      setPosition({
+        x: newX,
+        y: newY,
+      });
+    }
+
+    function handlePointerUp() {
+      isDragging.current = false;
+    }
+
+    return (
+      <div
+        ref={divRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        style={{
+          position: "absolute",
+          left: position.x,
+          top: position.y,
+          width: "fit-content",
+          height: 100,
+          display: "flex",
+          justifyContent: "space-evenly",
+          background: "red",
+        }}
+      >
+        <button>NG</button>
+        {/* <svg width="300" height="200">
   <path
     d="M 20 100 C 80 20, 200 180, 280 100"
     fill="none"
@@ -154,9 +150,9 @@ function Draggable() {
     strokeWidth="3"
   />
 </svg> */}
-    </div>
-  );
-}
+      </div>
+    );
+  }
   return (
     <div>
       {/* <a className="brand" href="/"><span className="brand-mark"><Check size={16}/></span><span>verifi.io</span></a> */}
@@ -180,10 +176,19 @@ function Draggable() {
       </header>
 
       <div className="hero-center">
-        <div className="flow-chart"><div className="types">
-        <div className="eyebrow">Verification types live today</div>
-        <div className="chip-row">{idTypes.map(id => <span className="chip" key={id.code}><b>{id.code}</b><small>{id.country}</small></span>)}</div>
-      </div></div>
+        <div className="flow-chart">
+          <div className="types">
+            <div className="eyebrow">Verification types live today</div>
+            <div className="chip-row">
+              {idTypes.map((id) => (
+                <span className="chip" key={id.code}>
+                  <b>{id.code}</b>
+                  <small>{id.country}</small>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
         <div className="terminal">
           <div className="terminal-bar">
             <div className="dots">
@@ -208,13 +213,10 @@ function Draggable() {
           {/* <div className="terminal-route"><ChevronRight size={13} /><span>routed to <b>{activeProvider}</b> · normalized on return</span></div>
             <pre className="response">{responsesByProvider[activeProvider]}</pre> */}
         </div>
-        
       </div>
 
-
       <div>
-       
-        <Draggable/>
+        <Draggable />
       </div>
     </div>
   );
