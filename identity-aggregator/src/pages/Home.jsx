@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   ArrowRight,
   Check,
@@ -17,6 +17,10 @@ import {
 import "../style/home.css";
 
 const Home = () => {
+    const [position, setPosition] = useState({})
+    const [offsetX, setOffsetY] = useState({})
+    const [offsetY, setOffsetX] = useState({})
+
   const responsesByProvider = {
     "Provider A": `{
   "verification_id": "vf_8a2f01",
@@ -82,6 +86,77 @@ const idTypes = [
   { code: "TIN", label: "Tax Identification Number", country: "NG" }
 ];
 
+
+const sayHello =() =>{
+  console.log('hello Yemi')
+}
+
+function Draggable() {
+  const [position, setPosition] = useState({
+    x: 100,
+    y: 100,
+  });
+
+  const isDragging = useRef(false);
+  const divRef = useRef(null);
+
+  const offsetX = useRef(0);
+  const offsetY = useRef(0);
+
+  function handlePointerDown(e) {
+    const rect = divRef.current.getBoundingClientRect();
+
+    isDragging.current = true;
+
+    offsetX.current = e.clientX - rect.left;
+    offsetY.current = e.clientY - rect.top;
+  }
+
+  function handlePointerMove(e) {
+    if (!isDragging.current) return;
+
+    const newX = e.clientX - offsetX.current;
+    const newY = e.clientY - offsetY.current;
+
+    setPosition({
+      x: newX,
+      y: newY,
+    });
+  }
+
+  function handlePointerUp() {
+    isDragging.current = false;
+  }
+
+  return (
+    <div
+      ref={divRef}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      style={{
+        position: "absolute",
+        left: position.x,
+        top: position.y,
+        width: "fit-content",
+        height: 100,
+        display: "flex",
+        justifyContent:"space-evenly",
+        background: "red"
+      }}
+    >
+    <button>NG</button>
+{/* <svg width="300" height="200">
+  <path
+    d="M 20 100 C 80 20, 200 180, 280 100"
+    fill="none"
+    stroke="black"
+    strokeWidth="3"
+  />
+</svg> */}
+    </div>
+  );
+}
   return (
     <div>
       {/* <a className="brand" href="/"><span className="brand-mark"><Check size={16}/></span><span>verifi.io</span></a> */}
@@ -134,6 +209,12 @@ const idTypes = [
             <pre className="response">{responsesByProvider[activeProvider]}</pre> */}
         </div>
         
+      </div>
+
+
+      <div>
+       
+        <Draggable/>
       </div>
     </div>
   );
