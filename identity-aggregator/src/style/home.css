@@ -127,14 +127,17 @@ button {
     justify-content: space-between;
     height: 80vh;
     /* background-color: #0e555e; */
-    padding-left: 40px;
+    /* padding-left: 40px;
     padding-right: 40px;
-    padding-top: 40px;
+    padding-top: 40px; */
+    padding: 10px;
 }
 
 .flow-chart{
-    width: 40%;
+    width: 60%;
     /* background-color: #9fe0be; */
+      margin-top: 60px;
+    margin-right: 40px;
 }
 
 
@@ -147,8 +150,10 @@ button {
   overflow: hidden;
   box-shadow: 0 30px 60px -20px rgba(20, 20, 15, 0.35);
   color: var(--ink);
-  width: 35%;
+  width: 30%;
     padding: 20px;
+    margin-top: 40px;
+    margin-right: 40px;
 
 }
 .terminal-bar {

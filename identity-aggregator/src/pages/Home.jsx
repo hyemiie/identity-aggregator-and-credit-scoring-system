@@ -15,6 +15,7 @@ import {
   Code,
 } from "lucide-react";
 import "../style/home.css";
+import SpatialIndex from "../components/SpatialIndex/SpatialIndex";
 
 const Home = () => {
 
@@ -177,7 +178,9 @@ Authorization: Bearer sk_live_••••••••
 
       <div className="hero-center">
         <div className="flow-chart">
-          <div className="types">
+        {/* hello */}
+        <SpatialIndex/>
+          {/* <div className="types">
             <div className="eyebrow">Verification types live today</div>
             <div className="chip-row">
               {idTypes.map((id) => (
@@ -187,7 +190,7 @@ Authorization: Bearer sk_live_••••••••
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="terminal">
           <div className="terminal-bar">
@@ -214,10 +217,14 @@ Authorization: Bearer sk_live_••••••••
             <pre className="response">{responsesByProvider[activeProvider]}</pre> */}
         </div>
       </div>
-
+{/* 
       <div>
         <Draggable />
-      </div>
+        <Draggable />
+        <Draggable />
+      </div> */}
+
+      {/* <SpatialIndex/> */}
     </div>
   );
 };
