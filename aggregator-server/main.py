@@ -4,6 +4,8 @@ from fastapi import FastAPI
 
 from db.models import Base
 from db.session import engine
+from core.errors import register_exception_handlers
+from v1.endpoints import verify
 
 
 async def create_tables() -> None:
@@ -28,4 +30,12 @@ async def lifespan(app: FastAPI):
     print("Application shutting down...")
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    title="Identity Aggregator and Credit Scoring System",
+    version="0.1.0",
+    lifespan=lifespan,
+)
+
+register_exception_handlers(app)
+
+app.include_router(verify.router, prefix="/v1", tags=["verify"])
