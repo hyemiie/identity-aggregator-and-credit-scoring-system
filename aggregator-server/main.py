@@ -6,6 +6,7 @@ from db.models import Base
 from db.session import engine
 from core.errors import register_exception_handlers
 from v1.endpoints import verify
+from routers import users
 
 
 async def create_tables() -> None:
@@ -39,3 +40,4 @@ app = FastAPI(
 register_exception_handlers(app)
 
 app.include_router(verify.router, prefix="/v1", tags=["verify"])
+app.include_router(users.router, prefix="/v1", tags=["Users"])

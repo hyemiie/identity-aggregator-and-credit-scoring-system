@@ -11,8 +11,8 @@ ssl_context = ssl.create_default_context()
 
 engine = create_async_engine(
     os.getenv("DB_URL"),
-    # echo=settings.debug,       # logs SQL statements in dev, silent in prod
-    pool_pre_ping=True,        # avoids stale connections after idle periods
+    # echo=settings.debug,       
+    pool_pre_ping=True,      
     pool_size=5,
     max_overflow=10,
     connect_args={
@@ -23,7 +23,7 @@ engine = create_async_engine(
 AsyncSessionLocal = async_sessionmaker(
     bind=engine,
     class_=AsyncSession,
-    expire_on_commit=False,    # keeps loaded attributes usable after commit
+    expire_on_commit=False,    
     autoflush=False,
 )
 
